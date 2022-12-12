@@ -8,7 +8,7 @@ var httpLink = {
   showAllContact: contactsApi+"api/contacts/showAll",
   createContact: contactsApi+"api/contacts/create",
   updateContact: contactsApi+"api/contacts/update/:id",
-  deleteContact: contactsApi+"api/contacts/delete/:id",
+  deleteContact: contactsApi+"api/contacts/delete/",
 }
 
 @Injectable({
@@ -28,7 +28,7 @@ export class HttpProviderService {
     return this.webApiService.post(httpLink.updateContact + id, model);
   }
   public deleteContact(id : any): Observable<any> {
-    return this.webApiService.post(httpLink.deleteContact, id);
+    return this.webApiService.delete(httpLink.deleteContact + id);
   }
 
 }

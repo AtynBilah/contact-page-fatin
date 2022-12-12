@@ -1,15 +1,10 @@
 <div class="container-xl">
-    <div class="table-responsive">
+    <div class="table-responsive" style="overflow: hidden;">
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
             <div class="col-sm-6">
-              <h4><b>Manage Employees</b></h4>
-            </div>
-            <div class="col-sm-6"> 
-              <button class="btn btn-success" (click)="AddContact()">
-                <i class='fas fa-plus-circle'></i><span> ADD </span>
-              </button>
+              <h4><b><p>Manage Contacts</p></b></h4>
             </div>
           </div>
         </div>
@@ -31,9 +26,8 @@
               <td>{{ contacts.address }}</td>
               <td>{{ contacts.gender }}</td>
               <td>
-                <!-- <a href="#" [routerLink]="['/ViewEmployee/', contacts.id]" class="btn"><i class='fas fa-eye view'></i></a> -->
-                <!-- <a href="#" [routerLink]="['/update/', contacts.id]" class="btn"><i class="fa fa-edit edit"></i></a> -->
                 <button type="button" (click)="deleteContact(contacts.id)" class="btn"><i class='fas fa-trash-alt delete'></i></button>
+                <!-- <button type="button" (click)="updateContact(contacts.id)" class="btn"><i class='fas fa-trash-alt edit'></i></button> -->
               </td>
             </tr>
             <tr>
@@ -45,5 +39,136 @@
     </div>
   </div>
 
-  
-  <span></span>
+  <!--CREATE FORM -->
+  <div class="container-xl">
+    <div class="table-responsive" style="overflow: hidden;">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>New Contact</b></h4>
+            </div>
+          </div>
+        </div>
+        <form #contactForm="ngForm">
+          <div class="table-content">
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="name" class="p-t-b-10">Name</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" maxlength="255"
+                  [(ngModel)]="addContactForm.name" name="name" #name="ngModel">
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="email" class="p-t-b-10">Email</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="email" maxlength="255"
+                  [(ngModel)]="addContactForm.email" name="email" #email="ngModel">
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Phone</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="phone" maxlength="10"
+                  [(ngModel)]="addContactForm.phone" name="phone" #phone="ngModel" pattern="^\d{3}\d{3}\d{4}$">
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Address</label>
+              </div>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="address" [(ngModel)]="addContactForm.address" name="address"
+                  #address="ngModel">></textarea>
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Gender</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="gender" required [(ngModel)]="addContactForm.gender" name="gender"
+                  #gender="ngModel">
+              </div>
+            </div>
+          </div>
+          <div class="table-footer">
+            <button class="btn btn-success" (click)="AddContact()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--EDIT FORM -->
+  <div class="container-xl">
+    <div class="table-responsive" style="overflow: hidden;">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Edit Contact</b></h4>
+            </div>
+          </div>
+        </div>
+        <form #contactForm="ngForm">
+          <div class="table-content">
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="name" class="p-t-b-10">Name</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" maxlength="255"
+                  [(ngModel)]="addContactForm.name" name="name" #name="ngModel">
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="email" class="p-t-b-10">Email</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="email" maxlength="255"
+                  [(ngModel)]="addContactForm.email" name="email" #email="ngModel">
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Phone</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="phone" maxlength="10"
+                  [(ngModel)]="addContactForm.phone" name="phone" #phone="ngModel" pattern="^\d{3}\d{3}\d{4}$">
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Address</label>
+              </div>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="address" [(ngModel)]="addContactForm.address" name="address"
+                  #address="ngModel">></textarea>
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Gender</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="gender" required [(ngModel)]="addContactForm.gender" name="gender"
+                  #gender="ngModel">
+              </div>
+            </div>
+          </div>
+          <div class="table-footer">
+            <button class="btn btn-success" (click)="UpdateContact()">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
