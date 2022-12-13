@@ -1,51 +1,5 @@
-<div class="container-xl">
-    <div class="table-responsive" style="overflow: hidden;">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-sm-6">
-              <h4><b><p>Manage Contacts</p></b></h4>
-            </div>
-            <div class="col-sm-6" style="text-align: right;">
-              <button class="btn btn-success" (click)="gotoAddContact()">
-                <i class='fas fa-plus-circle'></i><span><span style="padding: 0em 1em;">ADD CONTACT</span></span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <table class="table table-striped table-hover table-bordered table-content">
-          <thead> 
-            <tr class="center-align" style="text-align: center;">
-              <th>Name</th>
-              <th>E-mail</th>
-              <th>Phone</th>
-              <th>Address</th>              
-              <th>Gender</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let contacts of contactsList" class="center-align">
-              <td>{{ contacts.name }}</td>
-              <td>{{ contacts.email }}</td>
-              <td>{{ contacts.phone }}</td>
-              <td>{{ contacts.address }}</td>
-              <td>{{ contacts.gender }}</td>
-              <td>
-                <button type="button" (click)="deleteContact(contacts.id)" class="btn"><i class='fas fa-trash-alt delete'></i></button>
-                <button type="button" (click)="selectContact(contacts.id)" class="btn"><i class='fas fa-pen-alt edit'></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td *ngIf="contactsList.length == 0" colspan="5">No Contact Found</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
   <!--CREATE FORM -->
-  <!-- <div class="container-xl">
+  <div class="container-xl">
     <div class="table-responsive" style="overflow: hidden;">
       <div class="table-wrapper">
         <div class="table-title">
@@ -53,6 +7,11 @@
             <div class="col-sm-6">
               <h4><b>New Contact</b></h4>
             </div>
+            <div class="col-sm-6" style="text-align: right;">
+                <button class="btn btn-success" (click)="closeBtn()">
+                  <i class='fas fa-plus-circle'></i><span><span style="padding: 0em 1em;">BACK</span></span>
+                </button>
+              </div>
           </div>
         </div>
         <form #contactForm="ngForm">
@@ -109,4 +68,4 @@
         </form>
       </div>
     </div>
-  </div> -->
+  </div>

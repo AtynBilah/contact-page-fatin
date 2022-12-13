@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpProviderService } from '../Service/http-provider.service';
 
 //Form
-import { NgForm } from '@angular/forms';
+//import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contacts',
@@ -15,9 +15,9 @@ export class ContactsComponent implements OnInit {
   contactsList : any = [];
 
   //Form
-  addContactForm : contactForm = new contactForm();
-  contactForm!: NgForm;
-  isSubmitted: boolean = false;
+  // addContactForm : contactForm = new contactForm();
+  // contactForm!: NgForm;
+  // isSubmitted: boolean = false;
 
   constructor(private router: Router, private httpProvider : HttpProviderService){  }
 
@@ -50,9 +50,10 @@ export class ContactsComponent implements OnInit {
   deleteContact(id: any) {
     console.log("id = " + id);
     this.httpProvider.deleteContact(id).subscribe((data : any) => {
-      if (data != null && data.body != null) {
-        var resultData = data.body;
-        if (resultData != null && resultData.isSuccess) {
+      if (data != null) {
+        var resultData = data.message;
+        console.log(resultData);
+        if (resultData != null) { 
           this.showAllContacts();
         }
       }
@@ -60,38 +61,47 @@ export class ContactsComponent implements OnInit {
     (error : any) => {});
   }
 
-  UpdateContact() {
+  selectContact(id: any) {
+    console.log("id = " + id);
     
   }
 
-  AddContact(){
-    this.isSubmitted = true;
-    // console.log("Add Contact Clicked. isValid = " + isValid);
-    if (this.isSubmitted) {
-      this.httpProvider.createContact(this.addContactForm).subscribe(async data => {
-        if (data != null && data.body != null) {
-          if (data != null && data.body != null) {
-            var resultData = data.body;
-            if (resultData != null && resultData.isSuccess) {
-              console.log("Success Added Contact " + resultData.message);
-            }
-          }
-        }
-      },
-        async error => {
-          console.log("Error Added Contact " + error);
-        });
-    }
-  } 
+  updateContact() {
+
+  }
+
+  gotoAddContact(){
+    this.router.navigate(['AddContact']);
+  }
+
+  // AddContact(){
+  //   this.isSubmitted = true;
+  //   // console.log("Add Contact Clicked. isValid = " + isValid);
+  //   if (this.isSubmitted) {
+  //     this.httpProvider.createContact(this.addContactForm).subscribe(async data => {
+  //       if (data != null && data.body != null) {
+  //         if (data != null && data.body != null) {
+  //           var resultData = data.body;
+  //           if (resultData != null && resultData.isSuccess) {
+  //             console.log("Success Added Contact " + resultData.message);
+  //           }
+  //         }
+  //       }
+  //     },
+  //       async error => {
+  //         console.log("Error Added Contact " + error);
+  //       });
+  //   }
+  // } 
   
 }
 
   //Form
-  export class contactForm {
-    name : String = "";
-    email : String = "";
-    phone : String = "";
-    address : String = "";
-    gender : String = "";
-  }
+  // export class contactForm {
+  //   name : String = "";
+  //   email : String = "";
+  //   phone : String = "";
+  //   address : String = "";
+  //   gender : String = "";
+  // }
 
