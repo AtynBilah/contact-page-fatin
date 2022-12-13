@@ -39,8 +39,12 @@ export class ContactsComponent implements OnInit {
       });
   }
 
+  viewContact(contactId: any){
+    this.router.navigate(['viewContact'],
+    {queryParams: {id:contactId}});
+  }
+
   deleteContact(id: any) {
-    console.log("id = " + id);
     this.httpProvider.deleteContact(id).subscribe((data : any) => {
       if (data != null) {
         var resultData = data.message;
@@ -54,7 +58,6 @@ export class ContactsComponent implements OnInit {
   }
 
   editContact(contactId: any) {
-    // this.router.navigate(['AddContact', id]);
     this.router.navigate(['AddContact'],
     {queryParams: {id:contactId, isEdit:true}});
     console.log("id = " + contactId);

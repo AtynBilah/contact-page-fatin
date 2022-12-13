@@ -30,9 +30,10 @@
               <td>{{ contacts.phone }}</td>
               <td>{{ contacts.address }}</td>
               <td>{{ contacts.gender }}</td>
-              <td>
+              <td style="text-align: center;">                
+                <button type="button" (click)="viewContact(contacts.id)" class="btn"><i class='fas fa-eye view'></i></button>
+                <button type="button" (click)="editContact(contacts.id)" class="btn"><i class='fas fa-pencil-alt edit'></i></button>
                 <button type="button" (click)="deleteContact(contacts.id)" class="btn"><i class='fas fa-trash-alt delete'></i></button>
-                <button type="button" (click)="editContact(contacts.id)" class="btn"><i class='fas fa-pen-alt edit'></i></button>
               </td>
             </tr>
             <tr>
