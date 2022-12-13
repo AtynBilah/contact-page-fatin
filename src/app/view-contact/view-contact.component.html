@@ -7,7 +7,7 @@
               <h4><b>View Contact</b></h4>
             </div>
             <div class="col-sm-6" style="text-align: right;">
-                <button class="btn btn-success" a href="#" routerLink="/Contacts">
+                <button class="btn" a href="#" routerLink="/Contacts">
                   <i class='fas fa-arrow-circle-left'></i><span><span style="padding: 0em 1em;">BACK</span></span>
                 </button>
             </div>
@@ -16,29 +16,33 @@
         <table class="table table-striped table-hover table-bordered table-content">
           <tbody>
             <tr>
-              <td><label><b>Name</b></label></td>
+              <td><label>Name</label></td>
               <td><span>{{ contactDetails.name }}</span></td>
             </tr>
             <tr>
-              <td><label><b>E-Mail</b></label> </td>
+              <td><label>E-Mail</label> </td>
               <td><span>{{ contactDetails.email }}</span></td>
             </tr>
             <tr>
-              <td> <label><b>Phone</b></label></td>
-              <td> <span>{{ contactDetails.email }}</span></td>
-            </tr>
-            <tr>
-              <td> <label><b>Address</b></label></td>
-              <td><span>{{ contactDetails.address }}</span></td>
-            </tr>
-            <tr>
-              <td> <label><b>Phone</b></label></td>
+              <td> <label>Phone</label></td>
               <td> <span>{{ contactDetails.phone }}</span></td>
             </tr>
             <tr>
-               <td> <label><b>gender</b></label></td>
+              <td> <label>Address</label></td>
+              <td><span>{{ contactDetails.address }}</span></td>
+            </tr>
+            <tr>
+               <td> <label>gender</label></td>
                <td> <span>{{ contactDetails.gender }}</span></td>
             </tr>
+            <tr>
+              <td> <label>Date Added</label></td>
+              <td> <span>{{ contactDetails.date_added | date :'short' }}</span></td>
+           </tr>
+           <tr>
+            <td> <label>Date Updated</label></td>
+            <td> <span>{{ contactDetails.date_modified | date :'short' }}</span></td>
+         </tr>
           </tbody>
         </table>       
       </div>

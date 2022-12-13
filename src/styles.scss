@@ -1,2 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
+div.table-title{
+    padding: 1em;
+    background-color: aliceblue;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+} 
+
+div.container-xl{
+    padding: 0.5rem !important;
+    margin: 5rem auto;
+}
+
+body{
+    background: transparent;
+}
+
+form{
+    padding:1rem;
+    background: #f2f1f1;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.form-group{
+    padding-bottom: 0.5rem;
+}
+
+table{
+    padding: 1em;
+    background-color: #f2f1f1;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border: transparent !important;
+}
+
+.table > :not(caption) > * > *{
+    padding: 0.3rem 1rem;
+    vertical-align: middle;
+}
+
+div.table-footer{
+    text-align: right;
+}
+
+label{
+    font-weight: bolder !important;
+}
+
+tr.center-align .td{
+    padding: 0.5rem 1rem;
+}
+
+html{
+    background-color: #b2c3cb;
+}
