@@ -81,6 +81,8 @@ export class AddContactComponent implements OnInit {
           this.addContactForm.phone = resultData.phone;
           this.addContactForm.address = resultData.address;
           this.addContactForm.gender = resultData.gender;
+          this.addContactForm.password = resultData.password;
+
         }
       }
     },
@@ -108,4 +110,5 @@ export class contactForm {
   phone : String = "";
   address : String = "";
   gender : String = "";
+  password : String = "";
 }
