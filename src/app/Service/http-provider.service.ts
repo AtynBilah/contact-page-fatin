@@ -7,7 +7,8 @@ var contactsApi = "http://localhost:8080/";
 var httpLink = { 
   showAllContact: contactsApi+"api/contacts/showAll",
   createContact: contactsApi+"api/contacts/create",
-  updateContact: contactsApi+"api/contacts/update/:id",
+  updateContact: contactsApi+"api/contacts/update/",
+  getOneContact: contactsApi+"api/contacts/getOne/",
   deleteContact: contactsApi+"api/contacts/delete/",
 }
 
@@ -20,6 +21,9 @@ export class HttpProviderService {
 
   public showAllContact(): Observable<any> {
     return this.webApiService.get(httpLink.showAllContact);
+  }
+  public getOneContact(id : any): Observable<any> {
+    return this.webApiService.get(httpLink.getOneContact + id);
   }
   public createContact(model : any): Observable<any> {
     return this.webApiService.post(httpLink.createContact, model);

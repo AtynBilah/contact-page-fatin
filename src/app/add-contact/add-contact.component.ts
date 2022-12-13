@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpProviderService } from '../Service/http-provider.service';
 
 @Component({
@@ -10,13 +10,24 @@ import { HttpProviderService } from '../Service/http-provider.service';
 })
 export class AddContactComponent implements OnInit {
   addContactForm: contactForm = new contactForm();
+  isEdit : Boolean = false;
+  contactId: any = "";
 
   @ViewChild("contactForm")
   employeeForm!: NgForm;
   isSubmitted: boolean = false;
-  constructor(private router: Router, private httpProvider: HttpProviderService){}
+  isUpdated: boolean = false;
+  constructor(private router: Router, private httpProvider: HttpProviderService, private route: ActivatedRoute){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //Only when the edit button is pressed will these pass value
+    this.contactId = this.route.snapshot.queryParamMap.get('id');
+    this.isEdit = !!this.route.snapshot.queryParamMap.get('isEdit');
+    if(this.contactId != null){
+      this.populateContact(this.contactId);
+    }
+    console.log('contactId = '+this.contactId+" isEdit = "+this.isEdit);
+  }
   
   AddContact(){
     this.isSubmitted = true;
@@ -38,7 +49,53 @@ export class AddContactComponent implements OnInit {
         });
     }
   }
-  
+
+  UpdateContact() {
+    this.isUpdated = true;
+    if (this.isUpdated && this.contactId != null) {
+      this.httpProvider.updateContact(this.contactId, this.addContactForm).subscribe(async data => {
+        if (data != null && data.body != null) {
+          if (data != null && data.body != null) {
+            var resultData = data.body;
+            if (resultData != null) {
+              console.log("Success Updated Contact " + resultData);
+              this.router.navigate(['/Contacts']);
+            }
+          }
+        }
+      },
+        async error => {
+          console.log("Error Update Contact " + error);
+        });
+    }
+  }
+
+  populateContact(id: any){
+    this.httpProvider.getOneContact(id).subscribe((data : any) => {
+      if (data != null && data.body != null) {
+        var resultData = data.body;
+        if (resultData) {
+          console.log(resultData);
+          this.addContactForm.name = resultData.name;
+          this.addContactForm.email = resultData.email;
+          this.addContactForm.phone = resultData.phone;
+          this.addContactForm.address = resultData.address;
+          this.addContactForm.gender = resultData.gender;
+        }
+      }
+    },
+    (error : any)=> {
+        if (error) {
+          if (error.status == 404) {
+            if(error.error && error.error.message){
+              // this.contactsList = [];
+              console.log(error.error.message);
+            }
+          }
+        }
+      });
+  }
+ 
   closeBtn() {
     this.router.navigate(['/Contacts']);
   }
